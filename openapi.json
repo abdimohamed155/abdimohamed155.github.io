@@ -1,41 +1,68 @@
-openapi: 3.0.1
-info:
-  title: AWS S3 Actions
-  version: "1.0"
-servers:
-  - url: https://xyz.execute-api.region.amazonaws.com
-paths:
-  /aws-action:
-    post:
-      summary: Perform S3 operations
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AwsAction'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-components:
-  schemas:
-    AwsAction:
-      type: object
-      properties:
-        action:
-          type: string
-          enum: [list_buckets, create_bucket, delete_bucket, upload_object]
-        bucket_name:
-          type: string
-        region:
-          type: string
-          default: us-east-1
-        object_key:
-          type: string
-        object_data:
-          type: string
-      required: [action]
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AWS S3 Actions",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://dhwyumeafd.execute-api.us-east-1.amazonaws.com"
+    }
+  ],
+  "paths": {
+    "/aws-action": {
+      "post": {
+        "summary": "Perform S3 operations",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AwsAction"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AwsAction": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": ["list_buckets", "create_bucket", "delete_bucket", "upload_object"]
+          },
+          "bucket_name": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string",
+            "default": "us-east-1"
+          },
+          "object_key": {
+            "type": "string"
+          },
+          "object_data": {
+            "type": "string"
+          }
+        },
+        "required": ["action"]
+      }
+    }
+  }
+}
